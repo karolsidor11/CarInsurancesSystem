@@ -3,8 +3,7 @@ package pl.sidor.CarInsurancesSystem.entity.entities;
 import lombok.*;
 import pl.sidor.CarInsurancesSystem.entity.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -23,6 +22,9 @@ public class Car extends BaseEntity<Long> implements Serializable {
     @Column(name = "MODEL")
     private String model;
 
+    @Column(name = "REGISTRY_NUMBER")
+    private String registryNumber;
+
     @Column(name = "CAPACITY")
     private Double capacity;
 
@@ -34,4 +36,7 @@ public class Car extends BaseEntity<Long> implements Serializable {
 
     @Column(name = "FUEL")
     private String  fuel;
+
+    @OneToOne(cascade =CascadeType.ALL)
+    private Person person;
 }

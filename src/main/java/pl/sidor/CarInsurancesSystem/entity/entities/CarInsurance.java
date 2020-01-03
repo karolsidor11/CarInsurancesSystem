@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.sidor.CarInsurancesSystem.entity.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,8 +22,13 @@ public class CarInsurance extends BaseEntity<Long> implements Serializable {
     @Column(name = "POLICY_NUMBER")
     private String policyNumber;
 
-    @Column(name = "IS_COMPANY")
-    private boolean isCompany;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CAR_ID")
+    private Car car;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "PERSON_ID")
+    private Person person;
 
     @Column(name = "DATE_FROM")
     private Date dateFrom;

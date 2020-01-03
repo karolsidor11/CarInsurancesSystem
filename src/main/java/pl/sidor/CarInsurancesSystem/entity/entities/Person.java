@@ -5,9 +5,7 @@ import lombok.*;
 import pl.sidor.CarInsurancesSystem.entity.base.BaseEntity;
 import pl.sidor.CarInsurancesSystem.entity.embeded.Adres;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -31,5 +29,8 @@ public class Person extends BaseEntity<Long> implements Serializable {
 
     @Embedded
     private Adres adres;
+
+    @OneToOne(mappedBy = "person")
+    private Car car;
 
 }
