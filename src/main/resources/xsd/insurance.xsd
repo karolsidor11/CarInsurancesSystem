@@ -24,19 +24,15 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="checkCarInsuranceResponse">
+    <xs:element name="checkCarInsuranceRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
-                <xs:element name="lastName" type="xs:string"/>
-                <xs:element name="car" type="tns:car"/>
-                <xs:element name="dateFrom" type="xs:date"/>
-                <xs:element name="dateTo" type="xs:date"/>
+                <xs:element name="registryNumber" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="checkCarInsuranceRequest">
+    <xs:element name="checkCarInsuranceResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="person" type="tns:person"/>

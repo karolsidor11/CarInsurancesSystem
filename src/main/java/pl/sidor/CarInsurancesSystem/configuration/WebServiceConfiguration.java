@@ -17,12 +17,12 @@ import org.springframework.xml.xsd.XsdSchema;
 public class WebServiceConfiguration extends WsConfigurerAdapter {
 
     @Bean
-    public ServletRegistrationBean servletRegistrationBean(ApplicationContext applicationContext) {
+    public ServletRegistrationBean<MessageDispatcherServlet> servletRegistrationBean(ApplicationContext applicationContext) {
         MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
         messageDispatcherServlet.setApplicationContext(applicationContext);
         messageDispatcherServlet.setTransformWsdlLocations(true);
 
-        return new ServletRegistrationBean(messageDispatcherServlet, "/ws/*");
+        return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/*");
     }
 
     @Bean(name = "insurance")

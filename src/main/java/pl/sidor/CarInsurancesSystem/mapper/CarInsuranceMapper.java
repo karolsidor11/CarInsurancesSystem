@@ -1,10 +1,11 @@
 package pl.sidor.CarInsurancesSystem.mapper;
 
 import generated_class.model.CarInsuranceRequest;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance;
 
-@org.mapstruct.Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring")
 public interface CarInsuranceMapper {
 
     @Mapping(source = "person.country", target = "person.adres.country")
