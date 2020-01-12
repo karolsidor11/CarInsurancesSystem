@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum MessageException {
 
     NIEOCZEKIWANY_BLAD("Wystąpił nieoczekiwany błąd systemu"),
-    NIE_ZNALEZIONO_UBEZPIECZENIA("Nie znaleziono ubezpieczenia samochodu");
+    NIE_ZNALEZIONO_UBEZPIECZENIA("Nie znaleziono ubezpieczenia samochodu"),
+    BRAK_PLATNOSCI("Brak płatności za ubezpieczenie samochodu");
 
     private  final String message;
 }

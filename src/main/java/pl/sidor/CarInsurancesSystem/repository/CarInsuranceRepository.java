@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface CarInsuranceRepository extends JpaRepository<CarInsurance, Long> {
 
     Optional<CarInsurance> findByCarRegistryNumber(String registryNumber);
+    Optional<CarInsurance> findByPolicyNumber(String policyNumber);
 }

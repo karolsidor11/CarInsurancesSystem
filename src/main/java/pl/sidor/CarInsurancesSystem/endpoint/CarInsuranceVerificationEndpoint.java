@@ -34,7 +34,7 @@ public class CarInsuranceVerificationEndpoint {
 
     private CarInsurance findInsuranceByCarRegistryNumber(CheckCarInsuranceRequest checkCarInsuranceRequest) throws Throwable {
         return carInsuranceRepository.findByCarRegistryNumber(checkCarInsuranceRequest.getRegistryNumber())
-                .orElseThrow(ExceptionFactory.nieoczekiwanyBladSystemu());
+                .orElseThrow(ExceptionFactory.brakUbezpieczeniaSamochodu());
     }
 
     private CheckCarInsuranceResponse mapCarInsurance(CarInsurance carInsurance) {
