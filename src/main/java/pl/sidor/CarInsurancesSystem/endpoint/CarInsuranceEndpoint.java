@@ -2,7 +2,6 @@ package pl.sidor.CarInsurancesSystem.endpoint;
 
 import generated_class.model.CarInsuranceRequest;
 import generated_class.model.CarInsuranceResponse;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -35,17 +34,18 @@ public class CarInsuranceEndpoint {
     public CarInsuranceResponse carInsuranceResponse(@RequestPayload CarInsuranceRequest carInsuranceRequest) {
         ResponseMapper responseMapper = new ResponseMapperImpl();
         CarInsuranceResponse carInsuranceResponse = responseMapper.mapToCarInsuranceResponse(carInsuranceRequest);
-        mapAndSaveInsurance(carInsuranceRequest);
+        CarInsurance carInsurance = mapAndSaveInsurance(carInsuranceRequest);
+        carInsuranceResponse.setPolicyNumber(carInsurance.getPolicyNumber());
 
         return carInsuranceResponse;
     }
 
-    private void mapAndSaveInsurance(CarInsuranceRequest carInsuranceRequest) {
+    private CarInsurance mapAndSaveInsurance(CarInsuranceRequest carInsuranceRequest) {
         CarInsuranceMapper carInsuranceMapper = new CarInsuranceMapperImpl();
         CarInsurance carInsuranceEndpoint1 = carInsuranceMapper.mapToCarInsurance(carInsuranceRequest);
         carInsuranceEndpoint1.setPolicyNumber(generatePolicyNumber());
 
-        carInsuranceRepository.save(carInsuranceEndpoint1);
+        return carInsuranceRepository.save(carInsuranceEndpoint1);
     }
 
     private String generatePolicyNumber() {
