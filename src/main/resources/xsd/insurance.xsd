@@ -15,11 +15,35 @@
     <xs:element name="carInsuranceResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="policyNumber" type="xs:string"/>
                 <xs:element name="name" type="xs:string"/>
                 <xs:element name="lastName" type="xs:string"/>
                 <xs:element name="car" type="tns:car"/>
                 <xs:element name="dateFrom" type="xs:date"/>
                 <xs:element name="dateTo" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="paymentCarInsuranceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="policyNumber" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="paymentCarInsuranceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="policyNumber" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+                <xs:element name="mark" type="xs:string"/>
+                <xs:element name="model" type="xs:string"/>
+                <xs:element name="registryNumber" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
