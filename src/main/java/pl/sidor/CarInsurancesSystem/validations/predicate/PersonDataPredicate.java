@@ -16,6 +16,9 @@ public class PersonDataPredicate implements Predicate<PaymentCarInsuranceRequest
 
     @Override
     public boolean test(PaymentCarInsuranceRequest request) {
+        if (Objects.isNull(request.getName()) || Objects.isNull(request.getLastName())) {
+            return false;
+        }
         return insuranceService.findByPersonData(request.getName(), request.getLastName()).stream().anyMatch(Objects::nonNull);
     }
 }

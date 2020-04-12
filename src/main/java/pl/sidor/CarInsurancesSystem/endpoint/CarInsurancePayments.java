@@ -10,7 +10,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import pl.sidor.CarInsurancesSystem.entity.entities.Car;
 import pl.sidor.CarInsurancesSystem.service.CarService;
-import pl.sidor.CarInsurancesSystem.service.MapperService;
 import pl.sidor.CarInsurancesSystem.service.PaymentService;
 import pl.sidor.CarInsurancesSystem.validations.validator.PaymentValidator;
 
@@ -22,7 +21,6 @@ public class CarInsurancePayments {
 
     private final PaymentValidator paymentValidator;
     private final PaymentService paymentService;
-    private final MapperService mapperService;
     private final CarService carService;
 
     @ResponsePayload
@@ -30,17 +28,9 @@ public class CarInsurancePayments {
     @SneakyThrows
     public PaymentCarInsuranceResponse payments(@RequestPayload PaymentCarInsuranceRequest paymentRequest) {
         paymentValidator.validate(paymentRequest);
-        PaymentCarInsuranceResponse paymentCarInsuranceResponse = new PaymentCarInsuranceResponse();
         Car car = carService.tryFindCarByPolicyNumber(paymentRequest);
-        PaymentCarInsuranceResponse paymentCarInsuranceResponse1 = mapperService.mapCarToResponse(car);
-        paymentCarInsuranceResponse.setPolicyNumber(paymentRequest.getPolicyNumber());
-        paymentCarInsuranceResponse.setName(paymentRequest.getName());
-        paymentCarInsuranceResponse.setLastName(paymentRequest.getLastName());
-        paymentCarInsuranceResponse.setMark(paymentCarInsuranceResponse1.getMark());
-        paymentCarInsuranceResponse.setModel(paymentCarInsuranceResponse1.getModel());
-        paymentCarInsuranceResponse.setRegistryNumber(paymentCarInsuranceResponse1.getRegistryNumber());
-        paymentService.savePaymentCarInsurance(paymentCarInsuranceResponse);
-
-        return paymentCarInsuranceResponse;
+        PaymentCarInsuranceResponse response = paymentService.prepareResponse(paymentRequest, car);
+        paymentService.savePaymentCarInsurance(response);
+        return response;
     }
 }
