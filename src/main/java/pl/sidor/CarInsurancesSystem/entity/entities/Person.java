@@ -1,6 +1,5 @@
 package pl.sidor.CarInsurancesSystem.entity.entities;
 
-
 import lombok.*;
 import pl.sidor.CarInsurancesSystem.entity.base.BaseEntity;
 import pl.sidor.CarInsurancesSystem.entity.embeded.Adres;
@@ -9,8 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

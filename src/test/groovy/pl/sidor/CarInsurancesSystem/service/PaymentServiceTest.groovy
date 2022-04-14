@@ -1,10 +1,12 @@
-package pl.sidor.CarInsurancesSystem.service
+package groovy.pl.sidor.CarInsurancesSystem.service
 
 import generated_class.model.PaymentCarInsuranceRequest
 import generated_class.model.PaymentCarInsuranceResponse
 import pl.sidor.CarInsurancesSystem.entity.entities.Car
 import pl.sidor.CarInsurancesSystem.entity.entities.PaymentCarInsurance
 import pl.sidor.CarInsurancesSystem.repository.PaymentCarInsuranceRepository
+import pl.sidor.CarInsurancesSystem.service.MapperService
+import pl.sidor.CarInsurancesSystem.service.PaymentService
 import spock.lang.Specification
 
 class PaymentServiceTest extends Specification {

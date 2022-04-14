@@ -1,6 +1,7 @@
-package pl.sidor.CarInsurancesSystem.validations.predicate
+package groovy.pl.sidor.CarInsurancesSystem.validations.predicate
 
 import generated_class.model.Person
+import pl.sidor.CarInsurancesSystem.validations.predicate.PersonPredicate
 import spock.lang.Specification
 import spock.lang.Unroll
 

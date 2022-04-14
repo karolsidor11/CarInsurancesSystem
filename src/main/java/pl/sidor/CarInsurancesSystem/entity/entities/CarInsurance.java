@@ -1,9 +1,6 @@
 package pl.sidor.CarInsurancesSystem.entity.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.sidor.CarInsurancesSystem.entity.base.BaseEntity;
 
 import javax.persistence.*;
@@ -11,8 +8,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarInsurance extends BaseEntity<Long> implements Serializable {

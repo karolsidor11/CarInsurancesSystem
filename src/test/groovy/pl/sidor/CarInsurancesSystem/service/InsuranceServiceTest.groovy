@@ -1,10 +1,15 @@
-package pl.sidor.CarInsurancesSystem.service
+package groovy.pl.sidor.CarInsurancesSystem.service
 
 import generated_class.model.CarInsuranceRequest
 import generated_class.model.CheckCarInsuranceRequest
+import pl.sidor.CarInsurancesSystem.entity.entities.Car
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance
+import pl.sidor.CarInsurancesSystem.entity.entities.Person
 import pl.sidor.CarInsurancesSystem.exception.InsuranceException
+import pl.sidor.CarInsurancesSystem.repository.CarRepository
 import pl.sidor.CarInsurancesSystem.repository.insurance.CarInsuranceRepository
+import pl.sidor.CarInsurancesSystem.service.InsuranceQueryService
+import pl.sidor.CarInsurancesSystem.service.InsuranceService
 import pl.sidor.CarInsurancesSystem.utils.PolicyNumberGenerator
 import spock.lang.Shared
 import spock.lang.Specification
@@ -13,7 +18,9 @@ class InsuranceServiceTest extends Specification {
 
     CarInsuranceRepository carInsuranceRepository = Mock(CarInsuranceRepository.class)
     PolicyNumberGenerator policyNumberGenerator = Mock(PolicyNumberGenerator.class)
-    InsuranceService carInsuranceService = [carInsuranceRepository, policyNumberGenerator]
+    CarRepository carRepository = Mock(CarRepository.class)
+    InsuranceService carInsuranceService = [carInsuranceRepository, policyNumberGenerator, carRepository]
+    InsuranceQueryService insuranceQueryService = [carInsuranceRepository]
 
     @Shared
     String name = "Name"
@@ -28,7 +35,7 @@ class InsuranceServiceTest extends Specification {
 
         when:
         carInsuranceRepository.findByPersonNameAndPersonLastName(name, lastName) >> [carInsurance]
-        def result = carInsuranceService.findByPersonData(name, lastName)
+        def result = insuranceQueryService.findByPersonData(name, lastName)
 
         then:
         result != null
@@ -38,7 +45,7 @@ class InsuranceServiceTest extends Specification {
     def "should return  empty CarInsurance List"() {
         when:
         carInsuranceRepository.findByPersonNameAndPersonLastName(name, lastName) >> []
-        def result = carInsuranceService.findByPersonData(name, lastName)
+        def result = insuranceQueryService.findByPersonData(name, lastName)
 
         then:
         result != null
@@ -48,10 +55,12 @@ class InsuranceServiceTest extends Specification {
     def "should MapAndSaveInsurance"() {
         given:
         CarInsuranceRequest carInsuranceRequest = Stub()
-        CarInsurance carInsurance = Stub()
+        CarInsurance carInsurance = prepareCarInsurance()
+        carInsurance.getCar().setId(1L)
 
         when:
         carInsuranceRepository.save(_ as CarInsurance) >> carInsurance
+        carRepository.findById(_ as Long) >> Optional.of(Car.builder().build())
         def result = carInsuranceService.mapAndSaveInsurance(carInsuranceRequest)
 
         then:
@@ -66,7 +75,7 @@ class InsuranceServiceTest extends Specification {
 
         when:
         carInsuranceRepository.findByCarRegistryNumber(_ as String) >> [carInsurance]
-        def result = carInsuranceService.findInsuranceByCarRegistryNumber(request)
+        def result = insuranceQueryService.findInsuranceByCarRegistryNumber(request)
 
         then:
         result != null
@@ -77,13 +86,19 @@ class InsuranceServiceTest extends Specification {
         given:
         CheckCarInsuranceRequest request = new CheckCarInsuranceRequest()
         request.setRegistryNumber(number)
-        CarInsurance carInsurance = Stub()
 
         when:
         carInsuranceRepository.findByCarRegistryNumber(_ as String) >> []
-        carInsuranceService.findInsuranceByCarRegistryNumber(request)
+        insuranceQueryService.findInsuranceByCarRegistryNumber(request)
 
         then:
         thrown(InsuranceException.class)
+    }
+
+    private static CarInsurance prepareCarInsurance() {
+        CarInsurance.builder()
+                .car(Car.builder().build())
+                .person(Person.builder().build())
+                .build()
     }
 }

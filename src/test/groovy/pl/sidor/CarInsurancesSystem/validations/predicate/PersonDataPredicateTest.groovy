@@ -1,14 +1,15 @@
-package pl.sidor.CarInsurancesSystem.validations.predicate
+package groovy.pl.sidor.CarInsurancesSystem.validations.predicate
 
 import generated_class.model.PaymentCarInsuranceRequest
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance
-import pl.sidor.CarInsurancesSystem.service.InsuranceService
+import pl.sidor.CarInsurancesSystem.service.InsuranceQueryService
+import pl.sidor.CarInsurancesSystem.validations.predicate.PersonDataPredicate
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class PersonDataPredicateTest extends Specification {
 
-    InsuranceService insuranceService = Mock()
+    InsuranceQueryService insuranceService = Mock()
     PersonDataPredicate personDataPredicate = [insuranceService]
 
     @Unroll

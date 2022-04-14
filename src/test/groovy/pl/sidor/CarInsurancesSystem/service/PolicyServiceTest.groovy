@@ -1,7 +1,8 @@
-package pl.sidor.CarInsurancesSystem.service
+package groovy.pl.sidor.CarInsurancesSystem.service
 
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance
 import pl.sidor.CarInsurancesSystem.repository.insurance.CarInsuranceRepository
+import pl.sidor.CarInsurancesSystem.service.PolicyService
 import spock.lang.Shared
 import spock.lang.Specification
 

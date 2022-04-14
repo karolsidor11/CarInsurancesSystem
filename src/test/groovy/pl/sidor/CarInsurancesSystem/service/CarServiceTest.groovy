@@ -1,9 +1,10 @@
-package pl.sidor.CarInsurancesSystem.service
+package groovy.pl.sidor.CarInsurancesSystem.service
 
 import generated_class.model.PaymentCarInsuranceRequest
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance
 import pl.sidor.CarInsurancesSystem.exception.InsuranceException
 import pl.sidor.CarInsurancesSystem.repository.insurance.CarInsuranceRepository
+import pl.sidor.CarInsurancesSystem.service.CarService
 import spock.lang.Shared
 import spock.lang.Specification
 

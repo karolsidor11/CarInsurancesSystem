@@ -1,5 +1,6 @@
-package pl.sidor.CarInsurancesSystem.validations.predicate
+package groovy.pl.sidor.CarInsurancesSystem.validations.predicate
 
+import pl.sidor.CarInsurancesSystem.validations.predicate.PeselPredicate
 import spock.lang.Specification
 import spock.lang.Unroll
 

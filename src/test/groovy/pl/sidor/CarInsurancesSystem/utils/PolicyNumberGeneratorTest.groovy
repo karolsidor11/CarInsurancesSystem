@@ -1,5 +1,6 @@
-package pl.sidor.CarInsurancesSystem.utils
+package groovy.pl.sidor.CarInsurancesSystem.utils
 
+import pl.sidor.CarInsurancesSystem.utils.PolicyNumberGenerator
 import spock.lang.Specification
 
 class PolicyNumberGeneratorTest extends Specification {

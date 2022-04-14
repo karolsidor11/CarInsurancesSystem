@@ -1,19 +1,15 @@
 package pl.sidor.CarInsurancesSystem.entity.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.sidor.CarInsurancesSystem.entity.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentCarInsurance extends BaseEntity<Long> implements Serializable {
