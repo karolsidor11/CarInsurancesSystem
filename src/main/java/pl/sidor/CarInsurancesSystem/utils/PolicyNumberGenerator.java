@@ -7,13 +7,14 @@ import java.util.Random;
 @Component
 public class PolicyNumberGenerator {
 
+    private static final String SINGS = "1234567890";
+
     public String generatePolicyNumber() {
         StringBuilder policyNumber = new StringBuilder();
-        String sings = "1234567890";
         Random random = new Random();
         for (int i = 0; i < 20; i++) {
-            int number = random.nextInt(sings.length());
-            policyNumber.append(sings.substring(number, number + 1));
+            int number = random.nextInt(SINGS.length());
+            policyNumber.append(SINGS.substring(number, number + 1));
         }
 
         return policyNumber.toString();

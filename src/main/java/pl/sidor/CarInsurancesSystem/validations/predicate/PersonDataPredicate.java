@@ -3,7 +3,7 @@ package pl.sidor.CarInsurancesSystem.validations.predicate;
 import generated_class.model.PaymentCarInsuranceRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.sidor.CarInsurancesSystem.service.InsuranceService;
+import pl.sidor.CarInsurancesSystem.service.InsuranceQueryService;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class PersonDataPredicate implements Predicate<PaymentCarInsuranceRequest> {
 
-    private final InsuranceService insuranceService;
+    private final InsuranceQueryService insuranceService;
 
     @Override
     public boolean test(PaymentCarInsuranceRequest request) {

@@ -1,18 +1,15 @@
 package pl.sidor.CarInsurancesSystem.service;
 
 import generated_class.model.CarInsuranceRequest;
-import generated_class.model.CheckCarInsuranceRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance;
-import pl.sidor.CarInsurancesSystem.exception.ExceptionFactory;
 import pl.sidor.CarInsurancesSystem.mapper.CarInsuranceMapper;
 import pl.sidor.CarInsurancesSystem.mapper.CarInsuranceMapperImpl;
+import pl.sidor.CarInsurancesSystem.repository.CarRepository;
 import pl.sidor.CarInsurancesSystem.repository.insurance.CarInsuranceRepository;
 import pl.sidor.CarInsurancesSystem.utils.PolicyNumberGenerator;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,23 +17,20 @@ public class InsuranceService {
 
     private final CarInsuranceRepository carInsuranceRepository;
     private final PolicyNumberGenerator policyNumberGenerator;
+    private final CarRepository carRepository;
 
-    public List<CarInsurance> findByPersonData(String name, String lastName) {
-        return carInsuranceRepository.findByPersonNameAndPersonLastName(name, lastName);
-    }
-
+    @Transactional
     public CarInsurance mapAndSaveInsurance(CarInsuranceRequest carInsuranceRequest) {
         CarInsuranceMapper carInsuranceMapper = new CarInsuranceMapperImpl();
         CarInsurance carInsuranceEndpoint1 = carInsuranceMapper.mapToCarInsurance(carInsuranceRequest);
         carInsuranceEndpoint1.setPolicyNumber(generatePolicyNumber());
-        return carInsuranceRepository.save(carInsuranceEndpoint1);
-    }
+        CarInsurance carInsurance = carInsuranceRepository.save(carInsuranceEndpoint1);
+        carRepository.findById(carInsurance.getCar().getId()).ifPresent(car -> {
+            car.setPerson(carInsurance.getPerson());
+            carRepository.save(car);
+        });
 
-    @SneakyThrows
-    public CarInsurance findInsuranceByCarRegistryNumber(CheckCarInsuranceRequest checkCarInsuranceRequest) {
-        return carInsuranceRepository.findByCarRegistryNumber(checkCarInsuranceRequest.getRegistryNumber()).stream()
-                .findFirst()
-                .orElseThrow(ExceptionFactory.brakUbezpieczeniaSamochodu());
+        return carInsurance;
     }
 
     private String generatePolicyNumber() {

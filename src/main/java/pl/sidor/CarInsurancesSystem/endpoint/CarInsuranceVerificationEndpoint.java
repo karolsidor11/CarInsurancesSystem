@@ -9,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import pl.sidor.CarInsurancesSystem.entity.entities.CarInsurance;
-import pl.sidor.CarInsurancesSystem.service.InsuranceService;
+import pl.sidor.CarInsurancesSystem.service.InsuranceQueryService;
 import pl.sidor.CarInsurancesSystem.service.MapperService;
 
 @Endpoint
@@ -17,7 +17,7 @@ import pl.sidor.CarInsurancesSystem.service.MapperService;
 public class CarInsuranceVerificationEndpoint {
 
     private static final String NAMESPACE_URI = "http://www.generated_class/model";
-    private final InsuranceService insuranceService;
+    private final InsuranceQueryService insuranceService;
     private final MapperService mapperService;
 
     @ResponsePayload

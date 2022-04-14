@@ -37,6 +37,7 @@ public class Car extends BaseEntity<Long> implements Serializable {
     @Column(name = "FUEL")
     private String  fuel;
 
-    @OneToOne(cascade =CascadeType.ALL)
+    @OneToOne()
+    @JoinColumn(name = "PERSON_ID")
     private Person person;
 }
