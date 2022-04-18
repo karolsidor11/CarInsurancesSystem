@@ -41,7 +41,8 @@ public abstract class CarConditionFactory<T> {
         return carPredicate.test(request);
     }
 
-    public void validate(T request) throws InsuranceException {
+    @SneakyThrows
+    public void validate(T request) {
         setConditions(request);
     }
 

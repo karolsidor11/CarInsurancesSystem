@@ -1,6 +1,5 @@
 package pl.sidor.CarInsurancesSystem.validations.predicate;
 
-
 import generated_class.model.CarInsuranceRequest;
 import org.springframework.stereotype.Component;
 

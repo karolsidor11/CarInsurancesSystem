@@ -12,6 +12,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class CarInsurance extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 5907072156000469252L;

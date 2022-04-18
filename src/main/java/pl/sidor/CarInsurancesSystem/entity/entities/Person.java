@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Person extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 6679878500355569583L;

@@ -3,14 +3,14 @@ package pl.sidor.CarInsurancesSystem.service;
 import generated_class.model.PaymentCarInsuranceRequest;
 import generated_class.model.PaymentCarInsuranceResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.sidor.CarInsurancesSystem.entity.entities.Car;
 import pl.sidor.CarInsurancesSystem.entity.entities.PaymentCarInsurance;
 import pl.sidor.CarInsurancesSystem.mapper.PaymentCarInsuranceMapper;
 import pl.sidor.CarInsurancesSystem.mapper.PaymentCarInsuranceMapperImpl;
 import pl.sidor.CarInsurancesSystem.repository.PaymentCarInsuranceRepository;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class PaymentService {
 
@@ -23,7 +23,7 @@ public class PaymentService {
         paymentCarInsuranceRepository.save(paymentCarInsurance);
     }
 
-    public PaymentCarInsuranceResponse prepareResponse(PaymentCarInsuranceRequest request, Car car){
+    public PaymentCarInsuranceResponse prepareResponse(PaymentCarInsuranceRequest request, Car car) {
         PaymentCarInsuranceResponse paymentCarInsuranceResponse = new PaymentCarInsuranceResponse();
         PaymentCarInsuranceResponse payments = mapperService.mapCarToResponse(car);
         paymentCarInsuranceResponse.setPolicyNumber(request.getPolicyNumber());

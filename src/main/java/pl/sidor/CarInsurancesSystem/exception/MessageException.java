@@ -1,10 +1,10 @@
 package pl.sidor.CarInsurancesSystem.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum MessageException {
 
     NIEOCZEKIWANY_BLAD("Wystąpił nieoczekiwany błąd systemu."),
@@ -17,5 +17,5 @@ public enum MessageException {
     NIEPRAWIDLOWE_DANE_OSOBOWE("Wprowadzono nieprawidłowe dane osobowe."),
     BRAK_PLATNOSCI("Brak płatności za ubezpieczenie samochodu.");
 
-    private  final String message;
+    private final String message;
 }

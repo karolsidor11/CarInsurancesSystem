@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Car extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 773053417852664574L;

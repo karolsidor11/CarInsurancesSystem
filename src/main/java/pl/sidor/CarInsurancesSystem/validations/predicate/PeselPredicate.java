@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 @Component
 public class PeselPredicate implements Predicate<BigInteger> {
 
+    public static final int PESEL_LENGTH = 11;
+
     @Override
     public boolean test(BigInteger validatedObject) {
         return Objects.isNull(validatedObject) || !validatePeselLength(validatedObject);
@@ -17,7 +19,7 @@ public class PeselPredicate implements Predicate<BigInteger> {
 
     private boolean validatePeselLength(BigInteger pesel) {
         return Optional.ofNullable(pesel)
-                .map(bigInteger -> bigInteger.toString().length()==11)
+                .map(bigInteger -> bigInteger.toString().length() == PESEL_LENGTH)
                 .orElse(false);
     }
 }

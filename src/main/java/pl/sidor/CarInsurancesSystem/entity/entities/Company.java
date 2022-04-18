@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Company extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -4977725439935379112L;

@@ -2,6 +2,7 @@ package pl.sidor.CarInsurancesSystem.validations.factory;
 
 import generated_class.model.PaymentCarInsuranceRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import pl.sidor.CarInsurancesSystem.exception.MessageException;
 import pl.sidor.CarInsurancesSystem.validations.predicate.PersonDataPredicate;
@@ -26,6 +27,7 @@ public abstract class PaymentConditionFactory<T> {
         return personDataPredicate.test(request);
     }
 
+    @SneakyThrows
     public void validate(T request) {
         setCondition(request);
     }
